@@ -10,14 +10,19 @@ mongoose
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://j40-tray-frontend.onrender.com',
+    credentials: true,
+  })
+);
 
-app.get("/health", async (req: Request, res: Response) => {
-	res.send({ message: "health OK!" });
-})
+app.get('/health', async (req: Request, res: Response) => {
+  res.send({ message: 'health OK!' });
+});
 
 // define user endpoints
-app.use("/api/my/user", myUserRoute)
+app.use('/api/my/user', myUserRoute);
 
 app.listen(8000, () => {
   console.log('server start on localhost:8000');
